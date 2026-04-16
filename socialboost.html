@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SocialBoost — Seguidores, Likes y Vistas</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=Space+Grotesk:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  *{box-sizing:border-box;margin:0;padding:0;}
+  :root{
+    --bg:#111213;--bg2:#18191b;--bg3:#1f2022;--card:rgba(34, 36, 38, 0.85);
+    --border:#2e3033;--text:#e8e9ea;--muted:#7a7d82;--accent:#9b9fa6;
+    --green:#4ade80;--green-dim:#1a2e22;
+  }
+  
+  body{
+    font-family:'DM Sans',sans-serif;
+    background-color: var(--bg);
+    background-image: url('wallpaperflare.com_wallpaper.jpg');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    color:var(--text);
+    min-height:100vh;
+  }
+
+  nav{display:flex;align-items:center;justify-content:space-between;padding:18px 28px;background:rgba(24, 25, 27, 0.9);border-bottom:1px solid var(--border);backdrop-filter: blur(10px);}
+  .brand{font-family:'Space Grotesk',sans-serif;font-size:20px;font-weight:600;letter-spacing:-0.5px;color:var(--text);}
+  .brand span{color:var(--green);}
+  .nav-tag{font-size:12px;color:var(--muted);letter-spacing:0.5px;margin-top:2px;}
+  .price-pill{background:var(--green-dim);color:var(--green);font-size:12px;font-weight:500;padding:5px 14px;border-radius:100px;border:1px solid #2a5a38;}
+  .hero{text-align:center;padding:40px 20px 32px;}
+  .hero h1{font-family:'Space Grotesk',sans-serif;font-size:26px;font-weight:600;letter-spacing:-0.8px;margin-bottom:8px;}
+  .hero p{font-size:14px;color:var(--muted);}
+  .dot{display:inline-block;width:6px;height:6px;background:var(--green);border-radius:50%;margin-right:8px;position:relative;top:-1px;}
+  .platforms{padding:0 20px 20px;}
+  .platform-block{margin-bottom:24px;}
+  .plat-header{display:flex;align-items:center;gap:12px;margin-bottom:14px;padding-bottom:10px;border-bottom:1px solid var(--border);}
+  
+  /* Iconos de Redes Sociales */
+  .plat-icon-img{
+    width: 28px;
+    height: 28px;
+    object-fit: contain;
+    flex-shrink: 0;
+  }
+
+  /* Iconos de Servicios (Seguidores, Likes, Vistas) */
+  .svc-icon-img{
+    width: 24px;
+    height: 24px;
+    margin-bottom: 8px;
+    object-fit: contain;
+  }
+
+  .plat-name{font-family:'Space Grotesk',sans-serif;font-size:15px;font-weight:500;}
+  .plat-line{flex:1;height:1px;background:var(--border);}
+  .grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;}
+  .card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:16px 12px 14px;display:flex;flex-direction:column;align-items:center;gap:6px;transition:border-color .2s,transform .15s;backdrop-filter: blur(5px);}
+  .card:hover{border-color:#3e4146;transform:translateY(-1px);}
+  .svc-name{font-size:12px;color:var(--muted);letter-spacing:.3px;text-transform:uppercase;}
+  .svc-price{font-family:'Space Grotesk',sans-serif;font-size:22px;font-weight:600;}
+  .svc-unit{font-size:11px;color:#4a4d52;}
+  .pay-btn{margin-top:6px;width:100%;padding:8px 0;font-size:13px;font-weight:500;font-family:'DM Sans',sans-serif;background:transparent;color:var(--green);border:1px solid #2a5a38;border-radius:8px;cursor:pointer;transition:background .15s;}
+  .pay-btn:hover{background:var(--green-dim);}
+  footer{text-align:center;padding:24px 20px;border-top:1px solid var(--border);font-size:12px;color:#3e4146;margin-top:8px;}
+  .contact-wrap{padding:40px 20px;display:flex;justify-content:center;}
+  .contact-card{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:32px 28px;text-align:center;max-width:360px;width:100%;backdrop-filter: blur(10px);}
+  .c-icon{width:58px;height:58px;background:var(--green-dim);border:1px solid #2a5a38;border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 20px;font-size:24px;}
+  .contact-card h2{font-family:'Space Grotesk',sans-serif;font-size:20px;font-weight:600;margin-bottom:6px;}
+  .sub{font-size:13px;color:var(--muted);margin-bottom:20px;}
+  .svc-badge{background:var(--bg3);border:1px solid var(--border);border-radius:8px;padding:10px 14px;font-size:13px;color:var(--accent);margin-bottom:20px;}
+  .phone-block{background:var(--bg);border:1px solid var(--border);border-radius:12px;padding:18px;margin-bottom:20px;}
+  .ph-label{font-size:11px;color:var(--muted);letter-spacing:.5px;text-transform:uppercase;margin-bottom:6px;}
+  .ph-number{font-family:'Space Grotesk',sans-serif;font-size:24px;font-weight:600;color:var(--green);letter-spacing:1px;}
+  .contact-hint{font-size:12px;color:var(--muted);margin-bottom:22px;line-height:1.6;}
+  .back-btn{font-size:13px;color:var(--muted);background:transparent;border:1px solid var(--border);border-radius:8px;padding:9px 22px;cursor:pointer;transition:border-color .15s;}
+  .back-btn:hover{border-color:var(--accent);}
+  .page{display:none;}
+  .page.active{display:block;}
+  @media(max-width:480px){.grid{grid-template-columns:1fr;}.hero h1{font-size:20px;}}
+</style>
+</head>
+<body>
+
+<div id="main" class="page active">
+  <nav>
+    <div>
+      <div class="brand">Social<span>Boost</span></div>
+      <div class="nav-tag">Seguidores · Likes · Vistas</div>
+    </div>
+    <div class="price-pill">$800 COP c/u</div>
+  </nav>
+  <div class="hero">
+    <h1><span class="dot"></span>Impulsa tus redes sociales</h1>
+    <p>Servicios disponibles para TikTok, Instagram y Facebook</p>
+    <p>$800 COP c/u Cada unidad trae 50 Likes, 500 Vistas, 150 Favoritas</p>
+  </div>
+  <div class="platforms">
+    
+    <div class="platform-block">
+      <div class="plat-header">
+        <img src="tik-tok.png" alt="TikTok" class="plat-icon-img">
+        <div class="plat-name">TikTok</div>
+        <div class="plat-line"></div>
+      </div>
+      <div class="grid">
+        <div class="card"><img src="usuario.png" alt="Seguidores" class="svc-icon-img"><div class="svc-name">Seguidores</div><div class="svc-price">$800</div><div class="svc-unit">COP / unidad</div><button class="pay-btn" onclick="pay('TikTok — Seguidores')">Pagar</button></div>
+        <div class="card"><img src="corazon.png" alt="Likes" class="svc-icon-img"><div class="svc-name">Likes</div><div class="svc-price">$800</div><div class="svc-unit">COP / unidad</div><button class="pay-btn" onclick="pay('TikTok — Likes')">Pagar</button></div>
+        <div class="card"><img src="estrella.png" alt="Vistas" class="svc-icon-img"><div class="svc-name">Vistas</div><div class="svc-price">$800</div><div class="svc-unit">COP / unidad</div><button class="pay-btn" onclick="pay('TikTok — Vistas')">Pagar</button></div>
+      </div>
+    </div>
+
+    <div class="platform-block">
+      <div class="plat-header">
+        <img src="instagram.png" alt="Instagram" class="plat-icon-img">
+        <div class="plat-name">Instagram</div>
+        <div class="plat-line"></div>
+      </div>
+      <div class="grid">
+        <div class="card"><img src="usuario.png" alt="Seguidores" class="svc-icon-img"><div class="svc-name">Seguidores</div><div class="svc-price">$800</div><div class="svc-unit">COP / unidad</div><button class="pay-btn" onclick="pay('Instagram — Seguidores')">Pagar</button></div>
+        <div class="card"><img src="corazon.png" alt="Likes" class="svc-icon-img"><div class="svc-name">Likes</div><div class="svc-price">$800</div><div class="svc-unit">COP / unidad</div><button class="pay-btn" onclick="pay('Instagram — Likes')">Pagar</button></div>
+        <div class="card"><img src="estrella.png" alt="Vistas" class="svc-icon-img"><div class="svc-name">Vistas</div><div class="svc-price">$800</div><div class="svc-unit">COP / unidad</div><button class="pay-btn" onclick="pay('Instagram — Vistas')">Pagar</button></div>
+      </div>
+    </div>
+
+    <div class="platform-block">
+      <div class="plat-header">
+        <img src="facebook.png" alt="Facebook" class="plat-icon-img">
+        <div class="plat-name">Facebook</div>
+        <div class="plat-line"></div>
+      </div>
+      <div class="grid">
+        <div class="card"><img src="usuario.png" alt="Seguidores" class="svc-icon-img"><div class="svc-name">Seguidores</div><div class="svc-price">$800</div><div class="svc-unit">COP / unidad</div><button class="pay-btn" onclick="pay('Facebook — Seguidores')">Pagar</button></div>
+        <div class="card"><img src="corazon.png" alt="Likes" class="svc-icon-img"><div class="svc-name">Likes</div><div class="svc-price">$800</div><div class="svc-unit">COP / unidad</div><button class="pay-btn" onclick="pay('Facebook — Likes')">Pagar</button></div>
+        <div class="card"><img src="estrella.png" alt="Vistas" class="svc-icon-img"><div class="svc-name">Vistas</div><div class="svc-price">$800</div><div class="svc-unit">COP / unidad</div><button class="pay-btn" onclick="pay('Facebook — Vistas')">Pagar</button></div>
+      </div>
+    </div>
+
+  </div>
+  <footer>SocialBoost · Cartagena, Colombia · Contáctanos para completar tu pedido</footer>
+</div>
+
+<div id="contact" class="page">
+  <nav>
+    <div>
+      <div class="brand">Social<span>Boost</span></div>
+      <div class="nav-tag">Pago y contacto</div>
+    </div>
+    <button class="back-btn" onclick="goBack()">← Volver</button>
+  </nav>
+  <div class="contact-wrap">
+    <div class="contact-card">
+      <div class="c-icon">📞</div>
+      <h2>Completa tu compra</h2>
+      <p class="sub">Servicio seleccionado:</p>
+      <div class="svc-badge" id="sel-svc">—</div>
+      <div class="phone-block">
+        <div class="ph-label">WhatsApp o llamada</div>
+        <div class="ph-number">313 546 0639</div>
+      </div>
+      <p class="contact-hint">Escríbenos indicando el servicio y la cantidad que deseas.<br>Te respondemos a la brevedad.</p>
+      <button class="back-btn" onclick="goBack()">← Regresar al catálogo</button>
+    </div>
+  </div>
+</div>
+
+<script>
+function pay(s){
+  document.getElementById('sel-svc').textContent=s+' — $800 COP / unidad';
+  document.getElementById('main').classList.remove('active');
+  document.getElementById('contact').classList.add('active');
+  window.scrollTo(0,0);
+}
+function goBack(){
+  document.getElementById('contact').classList.remove('active');
+  document.getElementById('main').classList.add('active');
+  window.scrollTo(0,0);
+}
+</script>
+</body>
+</html>
